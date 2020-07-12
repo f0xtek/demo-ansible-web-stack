@@ -4,4 +4,3 @@
   apt:
     name: ['curl', 'tree', 'ncdu', 'vim-nox', 'python-httplib2']
     state: present
-    update_cache: yes
