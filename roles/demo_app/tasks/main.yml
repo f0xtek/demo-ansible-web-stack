@@ -1,14 +1,17 @@
 ---
 # tasks file for demo_app
 - name: install dependencies
-  apt: name={{item}} state=present update_cache=yes
-  with_items:
-    - python-pip
-    - python-virtualenv
-    - python-mysqldb
+  apt:
+    name: ['python-pip', 'python-virtualenv', 'python-mysqldb']
+    state: present
+    update_cache: yes
 
 - name: copy demo app source
   copy: src=demo/app/ dest=/var/www/demo mode=0755
+  notify: restart apache2
+
+- name: copy demo.wsgi
+  template: src=demo.wsgi.j2 dest=/var/www/demo/demo.wsgi mode=0755
   notify: restart apache2
 
 - name: copy apache vhost config

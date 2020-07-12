@@ -2,9 +2,5 @@
 - hosts: database
   become: yes
   roles:
-    - mysql
-  vars:
-    db_name: demo
-    db_user: demo
-    db_pass: demo
-    db_user_host: '%'
+    - role: mysql
+      db_user_host: '%'
